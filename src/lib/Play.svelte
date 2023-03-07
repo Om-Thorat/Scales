@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { scl } from "./store";
   import {scaledic} from "./store";
+  import { animateCSS } from '../assets/utils';
     let ScaleList:Array<string>;
     let timeout = parseFloat("2").toFixed(2);
     let state:string = "Start";
@@ -32,8 +33,9 @@
                 }
                 await sleep(100)
                 timeout = parseFloat(i/1000).toFixed(2);
-                if (i < 1000){
+                if (i < 500){
                     counter.classList.replace("btn-primary","btn-error");
+                    animateCSS(counter,"shakebutt");
                 }
             }
         counter.classList.replace("btn-error","btn-primary");
@@ -55,9 +57,9 @@
         })
         duration = 20;
         currnote = ScaleList[0];
-        console.log("bruh")
     }
     async function end(){
+        state = "Start"
         document.getElementById("game").style.opacity = "0"
         await sleep(500)
         document.getElementById("game").classList.add("hidden")
@@ -83,3 +85,10 @@
         <div class="h-20 w-[45%] flex-grow btn btn-outline border-2 btn-secondary text-xl bg-base-300 rounded-box font-mono" bind:this={counter} on:click={() => note(ScaleList)} on:keydown={() => note(ScaleList)}> {timeout} </div>
     </div>
 </div>
+<div class="hidden shakebutt"></div>
+
+<style>
+    .shakebutt {
+        animation: headShake 200ms ease-in-out 1 !important;
+    }
+</style>
