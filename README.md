@@ -6,4 +6,4 @@ I hope you find it as useful as i did.
 
 #### If you have any suggestions or ideas please open an issue! I would be happy to try and make improvements 👀
 
-> Made with Svelte,packaged with vite,styled with tailwind and daisy ui.
+> Made with Svelte, Packaged with Vite, Styled with Tailwind and Daisy UI.
