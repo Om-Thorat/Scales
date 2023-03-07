@@ -70,14 +70,14 @@
 </script>
 
 <div class="flex flex-col gap-10 justify-evenly items-center w-full">
-    <div class="flex flex-col items-center w-3/5 gap-8">
+    <div class="flex flex-col items-center w-full md:w-3/5 gap-8">
         <button class="btn w-full btn-secondary btn-outline border-2 text-xl opacity-70 hover:opacity-100 normal-case" on:click={end}>
             &lt; Back
         </button>       
-        <input type="range" min="0" max="100" bind:value={duration} on:input={setdur} class="range range-info" />
+        <input type="range" min="1" max="100" bind:value={duration} on:input={setdur} class="range range-info" />
     </div>
     <span class="text-7xl font-semibold text-center text-a pb-3">{currnote ?? "C"}</span>
-    <div class="flex w-3/5">
+    <div class="flex w-full md:w-3/5">
         <div class="h-20 w-[45%] flex-grow btn btn-outline border-2 btn-primary text-xl bg-base-300 rounded-box" bind:this={statelem} on:click={() => note(ScaleList)} on:keydown={() => note(ScaleList)}>{state}</div>
         <div class="divider w-[5%] divider-horizontal"></div>
         <div class="h-20 w-[45%] flex-grow btn btn-outline border-2 btn-secondary text-xl bg-base-300 rounded-box font-mono" bind:this={counter} on:click={() => note(ScaleList)} on:keydown={() => note(ScaleList)}> {timeout} </div>
