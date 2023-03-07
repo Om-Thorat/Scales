@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.shakebutt {
+    animation: headShake 200ms ease-in-out 1 !important;
+}

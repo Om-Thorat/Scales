@@ -3,6 +3,7 @@
   import { scl } from "./store";
   import {scaledic} from "./store";
   import { animateCSS } from '../assets/utils';
+  import { globals } from 'svelte/internal';
     let ScaleList:Array<string>;
     let timeout = parseFloat("2").toFixed(2);
     let state:string = "Start";
