@@ -52,7 +52,11 @@
             timeout = "0.00"
             counter.classList.replace("btn-error","btn-primary");
             // THIS IS THE ANS SEGMENT
-            document.getElementById(currnote).style.background = "yellow"
+            try {
+                document.getElementById(currnote).style.background = "yellow"
+            } catch (error) {
+                console.log("oh")
+            }
             await sleep(100)
             upper.style.opacity = "0"
             await sleep(500)
@@ -88,8 +92,11 @@
             await sleep(100)
             upper.style.opacity = "1"
             await sleep(500)
-            document.getElementById(currnote).style.background = ""
-        }
+            try {
+                document.getElementById(currnote).style.background = ""
+            } catch (error) {
+                console.log("oh")
+            }        }
     }
 
     function setdur(){
