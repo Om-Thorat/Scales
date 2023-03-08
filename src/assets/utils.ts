@@ -16,3 +16,13 @@ new Promise((resolve, reject) => {
 
   node.addEventListener('animationend', handleAnimationEnd, {once: true});
 });
+
+export function pauser(elem) {
+  return new Promise(resolve => {
+      let playbuttonclick = function () {
+          elem.removeEventListener("click", playbuttonclick);
+          resolve("resolved");
+      }
+      elem.addEventListener("click", playbuttonclick)
+  })
+}
