@@ -2,6 +2,7 @@ scale = "C C# D D# E F F# G G# A A# B".split(" ")
 
 # C C# D D# E F F# G G# A A# B
 # T T S T T T S
+dot = []
 
 for i in range(len(scale)):
     scllist = []
