@@ -2,13 +2,16 @@
   import { onMount } from 'svelte';
   import { scl } from "./store";
   import {scaledic} from "./store";
+  import { GuitarScale } from './store';
   import { animateCSS } from '../assets/utils';
   import { AnsNote } from './store';
   import Guitar from './Guitar.svelte';
   import { pauser } from '../assets/utils';
+  import { now } from 'svelte/internal';
     let ScaleList:Array<string>;
     let timeout = parseFloat("2").toFixed(2);
     let state:string = "Start";
+    let scale;
     var currnote:string;
     let counter:HTMLElement;
     let statelem:HTMLElement;
@@ -16,6 +19,10 @@
     let guitar:HTMLElement;
     let duration:number = 20 ;
     let iamstillinside:string;
+    let gscale:Array<string>;
+    let notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+    let dots = ['Ċ', 'Ċ#', 'Ḋ', 'Ḋ#', 'Ė', 'Ḟ', 'Ḟ#', 'Ġ', 'Ġ#', 'Ȧ', 'Ȧ#', 'Ḃ']
+    let finalnote;
     function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
     async function note(Sc:Array<string>) {
         if (state == "Stop" || iamstillinside == "yes"){
@@ -47,16 +54,51 @@
                 }
             }
             if (state == "Start"){
+                counter.classList.replace("btn-error","btn-secondary");
                 break
             }
             timeout = "0.00"
             counter.classList.replace("btn-error","btn-primary");
             // THIS IS THE ANS SEGMENT
-            try {
-                document.getElementById(currnote).style.background = "yellow"
-            } catch (error) {
-                console.log("oh")
-            }
+                console.log(currnote)
+                if (dots.includes(currnote)){
+                    console.log("cool")
+                    var nownote = notes[dots.indexOf(currnote)] 
+                    var q = dots.indexOf(scale)
+                    var uh = 0
+                    console.log(q,nownote)
+                    for (let i = 8+q; i < gscale.length; i++) {
+                        const element = gscale[i];
+                        console.log(element)
+                        if (element == nownote){
+                            uh += 1;
+                            console.log(gscale[i],uh)
+                            if (uh == 2){
+                                finalnote = i
+                                if (finalnote == 19){
+                                    finalnote += 1
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+                else{
+                    var q = notes.indexOf(scale)
+                    console.log(q)
+                    for (let i = 8+q;i < gscale.length;i++){
+                        const element = gscale[i];
+                        if (element == currnote){
+                            finalnote = i;
+                            if (finalnote == 19){
+                                    finalnote += 1
+                            }
+                            break
+                        }
+                    }
+                }
+                console.log(finalnote)
+                document.getElementById(`${finalnote}`).style.background = "yellow"
             await sleep(100)
             upper.style.opacity = "0"
             await sleep(500)
@@ -93,10 +135,11 @@
             upper.style.opacity = "1"
             await sleep(500)
             try {
-                document.getElementById(currnote).style.background = ""
+                document.getElementById(finalnote).style.background = ""
             } catch (error) {
                 console.log("oh")
-            }        }
+            }        
+        }
     }
 
     function setdur(){
@@ -109,9 +152,13 @@
             scaledic.subscribe(dic =>{
                 ScaleList = dic[value]
                 currnote = value;
+                scale = value;
                 console.log(ScaleList)
             }
             )
+        })
+        GuitarScale.subscribe(u =>{
+        gscale = u;
         })
         duration = 20;
     }
@@ -132,7 +179,7 @@
     <div bind:this={guitar} class="hidden h-80 flex-col gap-12 w-full transition-opacity duration-500 opacity-0">
         <Guitar />
     </div>
-    <div bind:this={upper} class="flex flex-col h-80 items-center w-full md:w-3/5 gap-8 transition-opacity duration-500 ease-out">
+    <div bind:this={upper} class="flex flex-col justify-evenly h-80 items-center w-full md:w-3/5 gap-8 transition-opacity duration-500 ease-out">
         <button class="btn w-full btn-secondary btn-outline border-2 text-xl opacity-70 hover:opacity-100 normal-case" on:click={end}>
             &lt; Back
         </button>       

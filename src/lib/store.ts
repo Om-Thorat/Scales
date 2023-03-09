@@ -4,6 +4,7 @@ export const scl = writable();
 
 export const AnsNote = writable();
 
+
 export const GuitarScale = writable(['E','F','F#','G','G#','A','A#','B','C','C#','D','D#','E','F','F#','G','G#','A','A#','B','B','C','C#','D','D#','E','F','F#','G','G#'])
 
 // C C# D D# E F F# G G# A A# B
