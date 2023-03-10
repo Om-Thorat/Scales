@@ -176,10 +176,17 @@
 </script>
 
 <div class="flex flex-col gap-10 justify-evenly items-center w-full">
-    <div bind:this={guitar} class="hidden h-80 flex-col gap-12 w-full transition-opacity duration-500 opacity-0">
+    <div bind:this={guitar} class="hidden h-[21rem] flex-col gap-12 w-full transition-opacity duration-500 opacity-0">
+        <div class="h-2 w-full flex rounded-lg justify-between items-center"> 
+            <div class="h-7 w-7 sm:h-10 sm:w-10 rounded-full text-xl flex items-center justify-center">Open</div>
+            <div class="h-7 w-7 sm:h-10 sm:w-10 rounded-full text-xl flex items-center justify-center">1</div>
+            <div class="h-7 w-7 sm:h-10 sm:w-10 rounded-full text-xl flex items-center justify-center">2</div>
+            <div class="h-7 w-7 sm:h-10 sm:w-10 rounded-full text-xl flex items-center justify-center">3</div>
+            <div class="h-7 w-7 sm:h-10 sm:w-10 rounded-full text-xl flex items-center justify-center">4</div>
+        </div>
         <Guitar />
     </div>
-    <div bind:this={upper} class="flex flex-col justify-evenly h-80 items-center w-full md:w-3/5 gap-8 transition-opacity duration-500 ease-out">
+    <div bind:this={upper} class="flex flex-col justify-evenly h-[21rem] items-center w-full md:w-3/5 gap-8 transition-opacity duration-500 ease-out">
         <button class="btn w-full btn-secondary btn-outline border-2 text-xl opacity-70 hover:opacity-100 normal-case" on:click={end}>
             &lt; Back
         </button>       
