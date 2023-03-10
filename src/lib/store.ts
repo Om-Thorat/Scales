@@ -24,3 +24,4 @@ export const scaledic = writable({
     'A#':['A#', 'C', 'D', 'D#', 'F', 'G', 'A', 'Ȧ#'],
     'B':['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#', 'Ḃ']
 })
+
