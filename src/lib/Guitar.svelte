@@ -21,6 +21,7 @@
   onMount(populate)
 </script>
 
+
 <div bind:this={guitar} class="contents">
 <GuitarString gstring="E" />
 <GuitarString gstring="A" />
